@@ -1,5 +1,19 @@
 {
   "version": 2,
   "name": "my-nextjs-app",
-  "builds": [{ "src": "package.json", "use": "@now/next" }]
+  "builds": [
+    { "src": "ui/next.config.js", "use": "@now/next" },
+    {
+      "src": "server/routes/*.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    { "src": "/server/routes/(.*)", "dest": "/server/routes/$1" },
+    { "src": "/(.*)", "dest": "/ui/$1" }
+  ],
+  "env": {
+    "SPOTIFY_CLIENT_ID": "@spotify_client_id",
+    "SPOTIFY_CLIENT_SECRET": "@spotify_client_secret"
+  }
 }
