@@ -12,7 +12,9 @@ router.get("/", function(req, res, next) {
       const options = {
         url: `https://api.spotify.com/v1/artists/${req.params.id}`,
         headers: {
-          Authorization: "Bearer " + token
+          Authorization: "Bearer " + token,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "X-Requested-With"
         },
         json: true
       };

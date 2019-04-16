@@ -1,5 +1,4 @@
-import fetch from "isomorphic-unfetch";
-import { useEffect, useState } from "react";
+import React from "react";
 
 /**
  * A single album.
@@ -8,26 +7,8 @@ import { useEffect, useState } from "react";
  * @param {string} artistName
  * @param {string} imgUrl
  */
-export const Album = ({
-  name,
-  artistId,
-  artistName,
-  albumType,
-  imgUrl,
-  albumUri
-}) => {
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(`http://localhost:3000/artist/${artistId}`);
-      const d = await res.json();
-
-      setData(d);
-    };
-    fetchData();
-  }, []);
-  console.log(data);
+function Album(props) {
+  const { name, imgUrl, artistName, genres } = props;
   return (
     <div className="Card">
       <img src={imgUrl} alt={name} />
@@ -38,10 +19,10 @@ export const Album = ({
         </div>
       </div>
       <div className="AlbumGenres">
-        {data && data.map((genre, index) => <span>{genre}</span>)}
+        {genres && genres.map(genre => <span>{genre}</span>)}
       </div>
     </div>
   );
-};
+}
 
 export default Album;

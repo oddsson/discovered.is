@@ -3,8 +3,8 @@
   "scripts": {
     "dev": "node server/server.js",
     "build": "next build",
-    "now-build": "next build && next export -o dist",
-    "start": "next start"
+    "now-build": "next build",
+    "start": "NODE_ENV=production node server/server.js"
   },
   "dependencies": {
     "dotenv": "^7.0.0",

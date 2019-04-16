@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config();
 const express = require("express");
 const next = require("next");
 
@@ -6,21 +6,28 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const port = process.env.PORT || 3000;
+
 const newReleases = require("./routes/newReleases");
 const genreByArtist = require("./routes/genreByArtist");
+
+request = require("request");
+var authOptions = require("./utils");
 
 app
   .prepare()
   .then(() => {
     const server = express();
-    server.use("/new-releases", newReleases);
-    server.use("/artist/:id", genreByArtist);
 
-    server.get("*", (req, res) => {
-      return handle(req, res);
+    server.get("/", (req, res) => {
+      // console.log(res);
+      request.post(authOptions, function(error, response, body) {
+        res.setHeader("token", body.access_token);
+        return handle(req, res);
+      });
     });
 
-    server.listen(3000, err => {
+    server.listen(port, err => {
       if (err) throw err;
       console.log("> Ready on http://localhost:3000");
     });

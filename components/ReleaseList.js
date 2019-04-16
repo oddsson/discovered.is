@@ -12,7 +12,6 @@ const ReleasesList = props => {
       <div className="grid">
         {props.releases.albums.items.map((item, index) => {
           const genres = [];
-
           return (
             <Album
               key={index}
@@ -21,7 +20,7 @@ const ReleasesList = props => {
               artistName={item.artists[0].name}
               albumType={item.album_type}
               imgUrl={item.images[0].url}
-              genres={genres}
+              genres={item.genres}
             />
           );
         })}
