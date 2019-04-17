@@ -1,6 +1,7 @@
 {
   "version": 2,
-  "name": "my-nextjs-app",
+  "name": "discovered",
+  "alias": "discovered.is",
   "builds": [
     { "src": "ui/next.config.js", "use": "@now/next" },
     {
