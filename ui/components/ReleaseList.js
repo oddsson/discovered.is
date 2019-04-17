@@ -9,7 +9,7 @@ const ReleasesList = props => {
         <h1>Spotify New Releases</h1>
         <h2>The newest music as it’s released</h2>
       </div>
-      <div className="grid">
+      <div className="Grid">
         {props.releases.albums.items.map((item, index) => {
           const genres = [];
           return (
@@ -25,6 +25,33 @@ const ReleasesList = props => {
           );
         })}
       </div>
+      <style jsx>{`
+        .Title h1 {
+          font-weight: 700;
+        }
+
+        .Title h2 {
+          font-weight: 400;
+        }
+
+        .Grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap: 32px;
+        }
+
+        @media (max-width: 1024px) {
+          .Grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 767px) {
+          .Grid {
+            grid-template-columns: repeat(1, 1fr);
+          }
+        }
+      `}</style>
     </div>
   );
 };

@@ -2,11 +2,24 @@ import fetch from "isomorphic-unfetch";
 import React from "react";
 import url from "url";
 import ReleaseList from "../components/ReleaseList";
+import "../styles/reset.scss";
+import variables from "../styles/variables.scss";
 
 const Home = props => (
   <div>
     <ReleaseList releases={props.newReleases} token={props.token} />
-    <style jsx>{``}</style>
+    <style jsx>{`
+      padding: 128px 160px 280px 160px;
+      background-color: ${variables.mainBackgroundColor};
+
+      @media (max-width: 1024px) {
+        padding: 48px;
+      }
+
+      @media (max-width: 767px) {
+        padding: 24px;
+      }
+    `}</style>
   </div>
 );
 
@@ -37,7 +50,7 @@ Home.getInitialProps = async context => {
 
   // Get new releases
   const newReleases = await fetch(
-    `https://api.spotify.com/v1/browse/new-releases?country=SE`,
+    `https://api.spotify.com/v1/browse/new-releases`,
     {
       headers: {
         Authorization: `Bearer ${responseJSON.token}`,
