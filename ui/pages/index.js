@@ -34,7 +34,7 @@ Home.getInitialProps = async context => {
 
   const response = await fetch(apiUrl);
   const responseJSON = await response.json();
-  console.log(apiUrl);
+
   // Get new releases
   const newReleases = await fetch(
     `https://api.spotify.com/v1/browse/new-releases?country=SE`,
