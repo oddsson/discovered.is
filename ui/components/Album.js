@@ -1,4 +1,5 @@
 import React from "react";
+import Separator from "../static/icons/genre_separator.svg";
 
 /**
  * A single album.
@@ -19,12 +20,20 @@ function Album(props) {
         </div>
       </div>
       <div className="AlbumGenres">
-        {genres &&
+        {genres && genres.length > 0 ? (
           genres.map((genre, index) => (
             <span key={index} className="Genre">
-              {`${genre} ${index + 1 !== genres.lenght && "x "}`}
+              {genre}
+              {index + 1 !== genres.length && (
+                <span className="GenreSeparator">
+                  <Separator />
+                </span>
+              )}
             </span>
-          ))}
+          ))
+        ) : (
+          <span>🎶</span>
+        )}
       </div>
       <style jsx>{`
         .CardImage {
@@ -81,10 +90,17 @@ function Album(props) {
         }
 
         .Genre {
+          display: inline-flex;
+          align-items: center;
           font-size: 12px;
           letter-spacing: 0.02em;
           text-transform: capitalize;
           color: #adadad;
+        }
+
+        .Genre .GenreSeparator {
+          display: flex;
+          margin: 0 8px;
         }
       `}</style>
     </div>
