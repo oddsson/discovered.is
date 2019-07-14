@@ -10,8 +10,11 @@ const ReleasesList = props => {
         <h2>The newest music as it’s released</h2>
       </div>
       <div className="Grid">
-        {props.releases.albums.items.map((item, index) => {
-          const genres = [];
+        {props.releases.albums.items
+        .sort((a, b) => {
+          return new Date(b.release_date) - new Date(a.release_date)
+        })
+        .map((item, index) => {
           return (
             <Album
               key={index}
