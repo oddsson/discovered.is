@@ -17,19 +17,25 @@ const ReleasesList = props => {
         })
         .map((item, index) => {
           return (
-            <Album
-              key={index}
-              name={item.name}
-              artistId={item.artists[0].id}
-              artistName={item.artists[0].name}
-              albumType={item.album_type}
-              imgUrl={item.images[0].url}
-              genres={item.genres}
-            />
+            <a href={item.uri} rel="noopener">
+              <Album
+                key={index}
+                name={item.name}
+                artistId={item.artists[0].id}
+                artistName={item.artists[0].name}
+                albumType={item.album_type}
+                imgUrl={item.images[0].url}
+                genres={item.genres}
+              />
+            </a>
           );
         })}
       </div>
       <style jsx>{`
+        a {
+          text-decoration: none;
+        }
+
         .Title h1 {
           font-weight: 700;
         }
