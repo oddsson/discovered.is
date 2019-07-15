@@ -32,7 +32,7 @@ function Album(props) {
             </span>
           ))
         ) : (
-          <span>🎶</span>
+          <span area-label="Notes emoji">🎶</span>
         )}
       </div>
       <style jsx>{`
@@ -51,7 +51,6 @@ function Album(props) {
           font-size: 20px;
           line-height: 23px;
           font-weight: bold;
-          color: #333;
           margin-bottom: 16px;
         }
 
@@ -78,6 +77,7 @@ function Album(props) {
           flex-direction: column;
           background-color: white;
           box-shadow: 0px 3px 16px rgba(0, 0, 0, 0.1);
+          color: #1e272e;
         }
 
         .Card img {
