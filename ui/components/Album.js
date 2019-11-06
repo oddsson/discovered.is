@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Separator from "../static/icons/genre_separator.svg";
 
 /**
@@ -6,13 +6,25 @@ import Separator from "../static/icons/genre_separator.svg";
  * @param {string} name
  * @param {string} artistId
  * @param {string} artistName
- * @param {string} imgUrl
+ * @param {object} img
  */
 function Album(props) {
-  const { name, imgUrl, artistName, genres } = props;
+  const { name, img, artistName, genres } = props;
+  const [largeImageHasLoaded, setLargeImageHasLoaded] = useState(false);
+
   return (
     <div className="Card">
-      <div className="CardImage" />
+      <div className="CardImageWrapper">
+        <img src={img.thumbnail} className="CardImageThumbnail" />
+        <img
+          src={img.img}
+          className="CardImage"
+          loading="lazy"
+          onLoad={() => {
+            setLargeImageHasLoaded(true);
+          }}
+        />
+      </div>
       <div className="CardContent">
         <div className="AlbumInfo">
           <div className="AlbumName">{name}</div>
@@ -36,11 +48,24 @@ function Album(props) {
         )}
       </div>
       <style jsx>{`
+        .CardImageWrapper {
+          position: relative;
+          height: 300px;
+        }
+
         .CardImage {
-          background-image: url(${imgUrl});
-          background-size: 100% 100%;
-          background-repeat: no-repeat;
-          padding-top: 100%; /* 1:1 Aspect Ratio */
+          opacity: ${largeImageHasLoaded ? 1 : 0};
+          transition: opacity 0.3s ease-in;
+        }
+
+        .CardImage,
+        .CardImageThumbnail {
+          object-fit: cover;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
         }
 
         .AlbumInfo {
@@ -78,10 +103,6 @@ function Album(props) {
           background-color: white;
           box-shadow: 0px 3px 16px rgba(0, 0, 0, 0.1);
           color: #1e272e;
-        }
-
-        .Card img {
-          width: 352px;
         }
 
         .Card .CardContent {
