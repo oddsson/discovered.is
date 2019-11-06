@@ -58,9 +58,6 @@ function Album(props) {
           transition: opacity 0.3s ease-in;
         }
 
-        .CardImageThumbnail {
-        }
-
         .CardImage,
         .CardImageThumbnail {
           object-fit: cover;
