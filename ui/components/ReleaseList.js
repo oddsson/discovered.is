@@ -11,25 +11,27 @@ const ReleasesList = props => {
       </div>
       <div className="Grid">
         {props.releases.albums.items
-        .sort((a, b) => {
-          // TODO: if day is missing, set thet day to the last day of the month
-          return new Date(b.release_date) - new Date(a.release_date)
-        })
-        .map((item, index) => {
-          return (
-            <a href={item.uri} rel="noopener">
-              <Album
-                key={index}
-                name={item.name}
-                artistId={item.artists[0].id}
-                artistName={item.artists[0].name}
-                albumType={item.album_type}
-                imgUrl={item.images[0].url}
-                genres={item.genres}
-              />
-            </a>
-          );
-        })}
+          .sort((a, b) => {
+            // TODO: if day is missing, set thet day to the last day of the month
+            return new Date(b.release_date) - new Date(a.release_date);
+          })
+          .map((item, index) => {
+            return (
+              <a key={index} href={item.uri} rel="noopener">
+                <Album
+                  name={item.name}
+                  artistId={item.artists[0].id}
+                  artistName={item.artists[0].name}
+                  albumType={item.album_type}
+                  img={{
+                    img: item.images[0].url,
+                    thumbnail: item.images[2].url
+                  }}
+                  genres={item.genres}
+                />
+              </a>
+            );
+          })}
       </div>
       <style jsx>{`
         a {

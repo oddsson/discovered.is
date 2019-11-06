@@ -4,9 +4,18 @@ import url from "url";
 import ReleaseList from "../components/ReleaseList";
 import "../styles/reset.scss";
 import variables from "../styles/variables.scss";
+import Head from "next/head";
 
 const Home = props => (
   <div>
+    <Head>
+      <title>Rediscover Spotify</title>
+      <link
+        rel="shortcut icon"
+        type="image/x-icon"
+        href="../static/favicon.ico"
+      />
+    </Head>
     <ReleaseList releases={props.newReleases} token={props.token} />
     <style jsx>{`
       padding: 128px 160px 280px 160px;
