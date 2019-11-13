@@ -1,4 +1,4 @@
-import Album from "./Album";
+import { ReleaseItem } from "./ReleaseItem";
 /**
  * A list of new releases on Spotify.
  */
@@ -18,11 +18,11 @@ const ReleasesList = props => {
           .map((item, index) => {
             return (
               <a key={index} href={item.uri} rel="noopener">
-                <Album
+                <ReleaseItem
                   name={item.name}
                   artistId={item.artists[0].id}
                   artistName={item.artists[0].name}
-                  albumType={item.album_type}
+                  releaseType={item.album_type}
                   img={{
                     img: item.images[0].url,
                     thumbnail: item.images[2].url
