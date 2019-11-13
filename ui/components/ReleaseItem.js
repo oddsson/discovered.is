@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import Separator from "../static/icons/genre_separator.svg";
+import { Chip } from "./Chip";
 
-/**
- * A single album.
- * @param {string} name
- * @param {string} artistId
- * @param {string} artistName
- * @param {object} img
- */
-function Album(props) {
-  const { name, img, artistName, genres } = props;
+// A single album
+export const ReleaseItem = props => {
+  const { name, artistName, img, genres, releaseType } = props;
   const [largeImageHasLoaded, setLargeImageHasLoaded] = useState(false);
 
   return (
     <div className="Card">
       <div className="CardImageWrapper">
-        <img src={img.thumbnail} className="CardImageThumbnail" />
+        <img
+          src={img.thumbnail}
+          alt="Release thumbnail"
+          className="CardImageThumbnail"
+        />
         <img
           src={img.img}
+          alt="Release cover"
           className="CardImage"
           loading="lazy"
           onLoad={() => {
@@ -27,8 +27,11 @@ function Album(props) {
       </div>
       <div className="CardContent">
         <div className="AlbumInfo">
-          <div className="AlbumName">{name}</div>
-          <div className="ArtistName">{artistName}</div>
+          <div>
+            <div className="AlbumName">{name}</div>
+            <div className="ArtistName">{artistName}</div>
+          </div>
+          <Chip text={releaseType} />
         </div>
       </div>
       <div className="AlbumGenres">
@@ -69,6 +72,8 @@ function Album(props) {
         }
 
         .AlbumInfo {
+          display: flex;
+          justify-content: space-between;
           margin-bottom: 42px;
         }
 
@@ -116,7 +121,7 @@ function Album(props) {
           font-size: 12px;
           letter-spacing: 0.02em;
           text-transform: capitalize;
-          color: #adadad;
+          color: #222f3e;
         }
 
         .Genre .GenreSeparator {
@@ -126,6 +131,4 @@ function Album(props) {
       `}</style>
     </div>
   );
-}
-
-export default Album;
+};
