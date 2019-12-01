@@ -4,12 +4,15 @@ import { Chip } from "./Chip";
 
 // A single album
 export const ReleaseItem = props => {
-  const { name, artistName, img, genres, releaseType } = props;
+  const { name, artistName, img, genres, releaseType, releaseDate } = props;
   const [largeImageHasLoaded, setLargeImageHasLoaded] = useState(false);
 
   return (
     <div className="Card">
       <div className="CardImageWrapper">
+        <span className="CardImageReleaseDate">
+          {new Date(releaseDate).toLocaleDateString()}
+        </span>
         <img
           src={img.thumbnail}
           alt="Release thumbnail"
@@ -71,6 +74,20 @@ export const ReleaseItem = props => {
           height: 100%;
         }
 
+        .CardImageReleaseDate {
+          font-size: 12px;
+          font-weight: 600;
+          position: absolute;
+          top: 0;
+          right: 0;
+          backdrop-filter: blur(50px);
+          padding: 8px 16px;
+          border-bottom-left-radius: 8px;
+          color: white;
+          letter-spacing: 1px;
+          z-index: 1;
+        }
+
         .AlbumInfo {
           display: flex;
           justify-content: space-between;
@@ -80,7 +97,7 @@ export const ReleaseItem = props => {
         .AlbumName {
           font-size: 20px;
           line-height: 23px;
-          font-weight: bold;
+          font-weight: 500;
           margin-bottom: 16px;
         }
 
