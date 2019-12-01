@@ -23,6 +23,7 @@ const ReleasesList = props => {
                   artistId={item.artists[0].id}
                   artistName={item.artists[0].name}
                   releaseType={item.album_type}
+                  releaseDate={item.release_date}
                   img={{
                     img: item.images[0].url,
                     thumbnail: item.images[2].url
