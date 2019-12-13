@@ -59,7 +59,7 @@ Home.getInitialProps = async context => {
 
   // Get new releases
   const newReleases = await fetch(
-    `https://api.spotify.com/v1/browse/new-releases`,
+    `https://api.spotify.com/v1/browse/new-releases?limit=50`,
     {
       headers: {
         Authorization: `Bearer ${responseJSON.token}`,
