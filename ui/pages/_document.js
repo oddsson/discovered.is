@@ -10,7 +10,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <!-- Global site tag (gtag.js) - Google Analytics -->
           <script async src="https://www.googletagmanager.com/gtag/js?id=UA-81474936-1"></script>
           <script>
             window.dataLayer = window.dataLayer || [];
