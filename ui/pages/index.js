@@ -1,12 +1,21 @@
 import fetch from "isomorphic-unfetch";
-import React from "react";
+import React, { useEffect } from "react";
 import url from "url";
 import ReleaseList from "../components/ReleaseList";
 import "../styles/reset.scss";
 import variables from "../styles/variables.scss";
 import Head from "next/head";
+import { initGA, logPageView } from '../utils/analytics'
 
 const Home = props => (
+  useEffect(() => {
+    if (!window.GA_INITIALIZED) {
+      initGA()
+      window.GA_INITIALIZED = true
+    }
+    logPageView()
+  }, [])
+
   <div>
     <Head>
       <title>Rediscover Spotify</title>
