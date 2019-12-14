@@ -5,42 +5,43 @@ import ReleaseList from "../components/ReleaseList";
 import "../styles/reset.scss";
 import variables from "../styles/variables.scss";
 import Head from "next/head";
-import { initGA, logPageView } from '../utils/analytics'
+import { initGA, logPageView } from "../utils/analytics";
 
-const Home = props => (
+const Home = props => {
   useEffect(() => {
     if (!window.GA_INITIALIZED) {
-      initGA()
-      window.GA_INITIALIZED = true
+      initGA();
+      window.GA_INITIALIZED = true;
     }
-    logPageView()
-  }, [])
+    logPageView();
+  }, []);
 
-  <div>
-    <Head>
-      <title>Rediscover Spotify</title>
-      <link
-        rel="shortcut icon"
-        type="image/x-icon"
-        href="../static/favicon.ico"
-      />
-    </Head>
-    <ReleaseList releases={props.newReleases} token={props.token} />
-    <style jsx>{`
-      padding: 128px 160px 280px 160px;
-      background-color: ${variables.mainBackgroundColor};
+  return (
+    <div>
+      <Head>
+        <title>Rediscover Spotify</title>
+        <link
+          rel="shortcut icon"
+          type="image/x-icon"
+          href="../static/favicon.ico"
+        />
+      </Head>
+      <ReleaseList releases={props.newReleases} token={props.token} />
+      <style jsx>{`
+        padding: 128px 160px 280px 160px;
+        background-color: ${variables.mainBackgroundColor};
 
-      @media (max-width: 1024px) {
-        padding: 48px;
-      }
+        @media (max-width: 1024px) {
+          padding: 48px;
+        }
 
-      @media (max-width: 767px) {
-        padding: 24px;
-      }
-    `}</style>
-  </div>
-);
-
+        @media (max-width: 767px) {
+          padding: 24px;
+        }
+      `}</style>
+    </div>
+  );
+};
 const absoluteUrl = (req, setLocalhost) => {
   let protocol = "https";
   let host = req ? req.headers.host : window.location.hostname;
