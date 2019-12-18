@@ -61,47 +61,33 @@ Home.getInitialProps = async context => {
   const baseUrl = absoluteUrl(context.req, "localhost:3000");
   const apiUrl =
     process.env.NODE_ENV === "production"
-      ? `${baseUrl}server/routes/login.js`
-      : "http://localhost:4000/server/routes/login.js";
+      ? `${baseUrl}server/routes`
+      : "http://localhost:4000/server/routes";
 
-  const response = await fetch(apiUrl);
-  const responseJSON = await response.json();
+  // Authenticate with Spotify API
+  const loginResponse = await fetch(`${apiUrl}/login.js`);
+  const loginResponseJSON = await loginResponse.json();
 
   // Get new releases
   const newReleases = await fetch(
-    `https://api.spotify.com/v1/browse/new-releases?limit=50`,
-    {
-      headers: {
-        Authorization: `Bearer ${responseJSON.token}`,
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "X-Requested-With"
-      },
-      json: true
-    }
+    `${apiUrl}/newReleases.js?authToken=${loginResponseJSON.token}`
   );
-
-  // Convert newReleases to JSON
   const newReleasesJson = await newReleases.json();
 
   // For each new release, get the artist and append it's genre to it.
   await Promise.all(
-    newReleasesJson.albums &&
-      newReleasesJson.albums.items.map(async item => {
+    newReleasesJson.body &&
+      newReleasesJson.body.albums &&
+      newReleasesJson.body.albums.items &&
+      newReleasesJson.body.albums.items.map(async item => {
         // Get artist by ID
         const artistById = await fetch(
-          `https://api.spotify.com/v1/artists/${item.artists[0].id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${responseJSON.token}`,
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "X-Requested-With"
-            },
-            json: true
-          }
+          `${apiUrl}/artist.js?artistId=${item.artists[0].id}&authToken=${loginResponseJSON.token}`
         );
 
         // Convert artist to JSON
         const artistByIdJSON = await artistById.json();
+
         item.genres = artistByIdJSON.genres;
         return item;
       })

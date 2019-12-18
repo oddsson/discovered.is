@@ -4,9 +4,13 @@ const cors = require("cors");
 const server = express();
 const port = 4000;
 
-const api = require("./routes/login");
+const login = require("./routes/login");
+const newReleases = require("./routes/newReleases");
+const artist = require("./routes/artist");
 
 server.use(cors());
-server.use(api);
+server.use(login);
+server.use(newReleases);
+server.use(artist);
 
 server.listen(port, () => console.log(`API on port ${port}`));

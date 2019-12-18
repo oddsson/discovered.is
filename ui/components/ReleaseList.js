@@ -10,7 +10,7 @@ const ReleasesList = props => {
         <h2>The newest music as it’s released</h2>
       </div>
       <div className="Grid">
-        {props.releases.albums.items
+        {props.releases.body.albums.items
           .sort((a, b) => {
             // TODO: if day is missing, set thet day to the last day of the month
             return new Date(b.release_date) - new Date(a.release_date);
