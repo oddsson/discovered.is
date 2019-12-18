@@ -6,11 +6,11 @@ const options = require("../utils");
 try {
   const server = require("../lib/server");
 
-  server.get("/server/routes/newReleases.js", (req, res) => {
+  server.get("/server/routes/artist.js", (req, res) => {
     try {
       request.get(
         {
-          url: "https://api.spotify.com/v1/browse/new-releases?limit=50",
+          url: `https://api.spotify.com/v1/artists/${req.query.artistId}`,
           headers: {
             Authorization: `Bearer ${req.query.authToken}`,
             "Access-Control-Allow-Origin": "*",

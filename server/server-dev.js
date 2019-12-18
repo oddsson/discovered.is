@@ -6,9 +6,11 @@ const port = 4000;
 
 const login = require("./routes/login");
 const newReleases = require("./routes/newReleases");
+const artist = require("./routes/artist");
 
 server.use(cors());
 server.use(login);
 server.use(newReleases);
+server.use(artist);
 
 server.listen(port, () => console.log(`API on port ${port}`));

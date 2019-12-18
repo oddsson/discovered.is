@@ -82,19 +82,12 @@ Home.getInitialProps = async context => {
       newReleasesJson.body.albums.items.map(async item => {
         // Get artist by ID
         const artistById = await fetch(
-          `https://api.spotify.com/v1/artists/${item.artists[0].id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${loginResponseJSON.token}`,
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "X-Requested-With"
-            },
-            json: true
-          }
+          `${apiUrl}/artist.js?artistId=${item.artists[0].id}&authToken=${loginResponseJSON.token}`
         );
 
         // Convert artist to JSON
         const artistByIdJSON = await artistById.json();
+        console.log(artistByIdJSON);
         item.genres = artistByIdJSON.genres;
         return item;
       })
