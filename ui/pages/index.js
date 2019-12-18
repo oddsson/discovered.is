@@ -87,7 +87,7 @@ Home.getInitialProps = async context => {
 
         // Convert artist to JSON
         const artistByIdJSON = await artistById.json();
-        console.log(artistByIdJSON);
+
         item.genres = artistByIdJSON.genres;
         return item;
       })
