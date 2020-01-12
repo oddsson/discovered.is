@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Separator from "../static/icons/genre_separator.svg";
+import Separator from "../public/static/icons/genre_separator.svg";
 import { Chip } from "./Chip";
 
 // A single album

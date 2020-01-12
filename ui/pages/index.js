@@ -23,7 +23,7 @@ const Home = props => {
         <link
           rel="shortcut icon"
           type="image/x-icon"
-          href="../static/favicon.ico"
+          href="../public/static/favicon.ico"
         />
       </Head>
       <ReleaseList releases={props.newReleases} token={props.token} />
