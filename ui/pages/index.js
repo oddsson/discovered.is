@@ -61,16 +61,16 @@ Home.getInitialProps = async context => {
   const baseUrl = absoluteUrl(context.req, "localhost:3000");
   const apiUrl =
     process.env.NODE_ENV === "production"
-      ? `${baseUrl}server/routes`
-      : "http://localhost:4000/server/routes";
+      ? `${baseUrl}/api`
+      : "http://localhost:3000/api";
 
   // Authenticate with Spotify API
-  const loginResponse = await fetch(`${apiUrl}/login.js`);
+  const loginResponse = await fetch(`${apiUrl}/login`);
   const loginResponseJSON = await loginResponse.json();
 
   // Get new releases
   const newReleases = await fetch(
-    `${apiUrl}/newReleases.js?authToken=${loginResponseJSON.token}`
+    `${apiUrl}/newReleases?authToken=${loginResponseJSON.token}`
   );
   const newReleasesJson = await newReleases.json();
 
@@ -82,7 +82,7 @@ Home.getInitialProps = async context => {
       newReleasesJson.body.albums.items.map(async item => {
         // Get artist by ID
         const artistById = await fetch(
-          `${apiUrl}/artist.js?artistId=${item.artists[0].id}&authToken=${loginResponseJSON.token}`
+          `${apiUrl}/artist?artistId=${item.artists[0].id}&authToken=${loginResponseJSON.token}`
         );
 
         // Convert artist to JSON

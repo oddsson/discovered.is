@@ -13,7 +13,7 @@ export const Chip = props => {
             background-color: ${text === "album" ? "#34495e" : "#c0392b"};
             color: white;
             padding: 5px 12px;
-            margin: -1px 0 0 16px;
+            margin: -1px 0 0 16px;  
           }
         `}
       </style>
