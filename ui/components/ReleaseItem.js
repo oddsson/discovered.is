@@ -16,6 +16,7 @@ export const ReleaseItem = props => {
         <img
           src={img.thumbnail}
           alt="Release thumbnail"
+          loading="lazy"
           className="CardImageThumbnail"
         />
         <img
@@ -25,6 +26,9 @@ export const ReleaseItem = props => {
           loading="lazy"
           onLoad={() => {
             setLargeImageHasLoaded(true);
+          }}
+          onError={(err) => {
+            console.log(err)
           }}
         />
       </div>
