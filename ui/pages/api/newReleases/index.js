@@ -1,15 +1,7 @@
 const request = require("request");
-const cloudinary = require("cloudinary");
 require("dotenv").config();
 
-
 export default function handle(req, res) {
-  cloudinary.config({
-    cloud_name: 'oddsson',
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-  })
-
   try {
     request.get(
       {
@@ -22,20 +14,6 @@ export default function handle(req, res) {
         json: true
       },
       async function(error, response, body) {
-        await Promise.all(
-          body.albums.items.map(async(item) => {
-            await cloudinary.v2.uploader.upload(
-              item.images[0].url,
-              {format: 'webp'},
-              function(error, result) {
-                item.images[0].url = result.url
-              }
-            )
-
-            return item
-          })
-        )
-
         res.end(
           JSON.stringify({
             body
