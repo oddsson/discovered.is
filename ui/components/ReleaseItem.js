@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Separator from "../public/static/icons/genre_separator.svg";
 import { Chip } from "./Chip";
+import LazyLoad from "react-lazyload";
 
 // A single album
 export const ReleaseItem = props => {
@@ -18,15 +19,17 @@ export const ReleaseItem = props => {
           alt="Release thumbnail"
           className="CardImageThumbnail"
         />
-        <img
-          src={img.img}
-          alt="Release cover"
-          className="CardImage"
-          loading="lazy"
-          onLoad={() => {
-            setLargeImageHasLoaded(true);
-          }}
-        />
+        <LazyLoad height={300}>
+          <img
+            src={img.img}
+            alt="Release cover"
+            className="CardImage"
+            loading="lazy"
+            onLoad={() => {
+              setLargeImageHasLoaded(true);
+            }}
+          />
+        </LazyLoad>
       </div>
       <div className="CardContent">
         <div className="AlbumInfo">
