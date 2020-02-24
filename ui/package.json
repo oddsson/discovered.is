@@ -17,6 +17,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-ga": "^2.7.0",
+    "react-lazyload": "^2.6.5",
     "request": "^2.88.0",
     "webp-hero": "^0.0.0-dev.24"
   },
