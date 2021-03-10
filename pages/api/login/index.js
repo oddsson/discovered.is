@@ -7,7 +7,7 @@ const options = {
     Authorization:
       "Basic " +
       new Buffer(
-        `7b9acfdba21441618ee2676a28114f10:dff09d2fa58349729f0bbc6add668deb`
+        `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
       ).toString("base64"),
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "X-Requested-With",
