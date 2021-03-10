@@ -7,25 +7,23 @@ const options = {
     Authorization:
       "Basic " +
       new Buffer(
-        process.env.SPOTIFY_CLIENT_ID +
-          ":" +
-          process.env.SPOTIFY_CLIENT_SECRET
+        `7b9acfdba21441618ee2676a28114f10:dff09d2fa58349729f0bbc6add668deb`
       ).toString("base64"),
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "X-Requested-With"
+    "Access-Control-Allow-Headers": "X-Requested-With",
   },
   form: {
-    grant_type: "client_credentials"
+    grant_type: "client_credentials",
   },
-  json: true
-}
+  json: true,
+};
 
 export default function handle(req, res) {
   try {
-    request.post(options, function(error, response, body) {
+    request.post(options, function (error, response, body) {
       res.end(
         JSON.stringify({
-          token: body.access_token
+          token: body.access_token,
         })
       );
     });
