@@ -3,15 +3,6 @@
   "name": "discovered",
   "alias": "discovered.is",
   "builds": [
-    { "src": "ui/next.config.js", "use": "@now/next" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/ui/$1" }
-  ],
-  "env": {
-    "SPOTIFY_CLIENT_ID": "@spotify_client_id",
-    "SPOTIFY_CLIENT_SECRET": "@spotify_client_secret",
-    "CLOUDINARY_API_KEY": "@cloudinary_api_key",
-    "CLOUDINARY_API_SECRET": "@cloudinary_api_secret"
-  }
+    { "src": "next.config.js", "use": "@now/next" }
+  ]
 }
